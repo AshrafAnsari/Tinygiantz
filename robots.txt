@@ -1,0 +1,2 @@
+User-agent: *
+Disallow: /visitor_log.txt
