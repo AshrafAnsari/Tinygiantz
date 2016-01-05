@@ -1,92 +1,70 @@
-<?php
-
-echo "\t\t<div onmouseleave=\"mouseleave(" . $row["PostID"] . ");\" class=\"post-container\">\n\t";
-echo "\t\t\t<div class=\"post-title\">\n\t";
-echo "\t\t\t\t<a class=\"post-title-link\" href=\"/?postid=" . $row["PostID"] . "\">" . $row["Title"] . "</a>\n\t";
-echo "\t\t\t</div>\n\t";
-echo "\t\t\t<div onclick=\"showVideo(" . $row["PostID"] . ");\" class=\"post-video\">\n\t";
-echo "\t\t\t\t<div class=\"video-responsive\" style=\"background: url(" . $row["Picture"] . ");background-position: center;background-size: cover;background-repeat: no-repeat;\">\n\t";
-echo "\t\t\t\t\t<div class=\"video-overlay\"></div>\n\t";
-echo "\t\t\t\t\t<iframe class=\"video-frame\" id=\"video" . $row["PostID"] . "\" src=\"" . $row["VideoURL"] . "?api=1&player_id=video" . $row["PostID"] . "\" width=\"100px\" height=\"70px\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen>\n\t";
-echo "\t\t\t\t\t</iframe>\n\t";
-echo "\t\t\t\t</div>\n\t";
-echo "\t\t\t</div>\n\t";		
-echo "\t\t\t<div class=\"expander-hover\">\n\t";
-echo "\t\t\t\t<div class=\"post-description\">\n\t";
-echo "\t\t\t\t\t" . $row["Description"] . "\n\t";		
-echo "\t\t\t\t</div>\n\t";	
-echo "\t\t\t\t<div id=\"post-readmore-container" . $row["PostID"] . "\" class=\"post-readmore-container\">\n\t";
-echo "\t\t\t\t\t<button onclick=\"mouseenter(" . $row["PostID"] . ");\" class=\"button-readmore\" id=\"button-readmore" . $row["PostID"] . "\" type=\"button\">\n\t";
-echo "\t\t\t\t\t\tMore information and options\n\t";
-echo "\t\t\t\t\t</button>\n\t";
-echo "\t\t\t\t</div>\n\t";
-echo "\t\t\t\t<div id=\"post-button-container" . $row["PostID"] . "\" class=\"post-button-container\">\n\t";
-echo "\t\t\t\t\t<button id=\"button-credits" . $row["PostID"] . "\" onclick=\"showCredits(" . $row["PostID"] . ");\" type=\"button\">\n\t";
-echo "\t\t\t\t\t\tCredits\n\t";
-echo "\t\t\t\t\t</button>\n\t";
-echo "\t\t\t\t\t<button id=\"button-trivia" . $row["PostID"] . "\" onclick=\"showTrivia(" . $row["PostID"] . ");\" type=\"button\">\n\t";
-echo "\t\t\t\t\t\tTrivia\n\t";
-echo "\t\t\t\t\t</button>\n\t";
-echo "\t\t\t\t\t<button type=\"button\">Links</button><button type=\"button\">Like</button><button type=\"button\">Share</button><button type=\"button\">\n\t";
-echo "\t\t\t\t\t\tComment\n\t";
-echo "\t\t\t\t\t</button>\n\t";
-echo "\t\t\t\t\t<button type=\"button\">\n\t";
-echo "\t\t\t\t\t\tReport\n\t";
-echo "\t\t\t\t\t</button>\n\t";
-echo "\t\t\t\t</div>\n\t";
-echo "\t\t\t\t<div class=\"movie-trivia\" id=\"expander" . $row["PostID"] . "\">\n\t";
-echo "\t\t\t\t\t<div class=\"post-film-credits\" id=\"post-film-credits" . $row["PostID"] . "\">\n\t";
-
-if($row["Director"] != ""){
-	echo "\t\t\t\t\t\t<span class=\"post-expander-header\">" . $director . ": </span>\n\t";
-	echo "\t\t\t\t\t\t" . $row["Director"] . "\n\t";
-	echo "\t\t\t\t\t\t<br>\n\t";
-	echo "\t\t\t\t\t\t<br>\n\t";
-}
-if($row["Producer"] != ""){
-	echo "\t\t\t\t\t\t<span class=\"post-expander-header\">" . $producer . ": </span>\n\t";
-	echo "\t\t\t\t\t\t" . $row["Producer"] . "\n\t";
-	echo "\t\t\t\t\t\t<br>\n\t";
-	echo "\t\t\t\t\t\t<br>\n\t";
-}
-if($row["Screenplay"] != ""){
-	echo "\t\t\t\t\t\t<span class=\"post-expander-header\">Screenplay: </span>\n\t";
-	echo "\t\t\t\t\t\t" . $row["Screenplay"] . "\n\t";
-	echo "\t\t\t\t\t\t<br>\n\t";
-	echo "\t\t\t\t\t\t<br>\n\t";
-}
-if($row["DoP"] != ""){
-	echo "\t\t\t\t\t\t<span class=\"post-expander-header\">DoP: </span>\n\t";
-	echo "\t\t\t\t\t\t" . $row["DoP"] . "\n\t";
-	echo "\t\t\t\t\t\t<br>\n\t";
-	echo "\t\t\t\t\t\t<br>\n\t";
-}
-if($row["Cast"] != ""){
-	echo "\t\t\t\t\t\t<span class=\"post-expander-header\">Cast: </span>\n\t";
-	echo "\t\t\t\t\t\t" . $row["Cast"] . "\n\t";
-	echo "\t\t\t\t\t\t<br>\n\t";
-	echo "\t\t\t\t\t\t<br>\n\t";
-}
-if($row["Year"] != ""){
-	echo "\t\t\t\t\t\t<span class=\"post-expander-header\">Year :</span>\n\t";
-	echo "\t\t\t\t\t\t" . $row["Year"] . "\n\t";;	
-}
-
-echo "\t\t\t\t\t</div>\n\t";
-echo "\t\t\t\t\t<div class=\"post-film-trivia\" id=\"post-film-trivia" . $row["PostID"] . "\">\n\t";
-echo "\t\t\t\t\t\t" . $row["Trivia"] . "\n\t";
-echo "\t\t\t\t\t</div>\n\t";
-echo "\t\t\t\t</div>\n\t";
-echo "\t\t\t\t<div class=\"post-footer\">\n\t";
-echo "\t\t\t\t\t<table class=\"post-publication-date\">\n\t";
-echo "\t\t\t\t\t\t<tr>\n\t";
-echo "\t\t\t\t\t\t\t<td>\n\t";
-echo "\t\t\t\t\t\t\t\t" . $row["PublicationDate"] . " - " . substr($row["PublicationTime"], 0, -3) . " CET\n\t";
-echo "\t\t\t\t\t\t\t</td>\n\t";
-echo "\t\t\t\t\t\t<tr>\n\t";
-echo "\t\t\t\t\t</table>\n\t";
-echo "\t\t\t\t</div>\n\t";
-echo "\t\t\t</div>\n\t";
-echo "\t\t</div>\n\t";
-
-?>
+<div onmouseleave="mouseleave(<?php echo $row['PostID']; ?>);" class="post-container">
+	<div class="post-title">
+		<a class="post-title-link" href="/?postid=<?php echo $row['PostID'] ?>"><?php echo $row['Title']; ?></a>
+	</div>
+	<div class="post-video" onclick="showVideo(<?php echo $row['PostID']; ?>);">
+		<div class="video-responsive" style="background: url(<?php echo $row['Picture']; ?>);background-position: center;background-size: cover;background-repeat: no-repeat;">
+			<div class="video-overlay"></div>
+				<iframe class="video-frame" id="video<?php echo $row['PostID']; ?>" src="<?php echo $row['VideoURL']; ?>?api=1&player_id=video<?php echo $row['PostID']; ?>" width="100px" height="70px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+				</iframe>
+			</div>
+		</div>		
+	<div class="expander-hover">
+		<div class="post-description">
+			<?php echo $row['Description'];	?>
+		</div>
+		<div class="post-readmore-container" id="post-readmore-container<?php echo $row['PostID']; ?>">
+			<button type="button" class="button-readmore" id="button-readmore<?php echo $row['PostID']; ?>" onclick="mouseenter(<?php echo $row['PostID']; ?>);">More information and options</button>
+		</div>
+		<div id="post-button-container<?php echo $row['PostID']; ?>" class="post-button-container">
+			<button type="button" id="button-credits<?php echo $row['PostID']; ?>" onclick="showCredits(<?php echo $row['PostID']; ?>);">Credits</button>
+			<button type="button" id="button-trivia<?php echo $row['PostID']; ?>" onclick="showTrivia(<?php echo $row['PostID']; ?>);">Trivia</button>
+			<button type="button">Links</button>
+			<button type="button">Like</button>
+			<button type="button">Share</button>
+			<button type="button">Comment</button>
+			<button type="button">Report</button>
+		</div>
+		<div class="movie-trivia" id="expander<?php echo $row['PostID']; ?>">
+			<div class="post-film-credits" id="post-film-credits<?php echo $row['PostID'];?>">
+			<?php if($row['Director'] != ""){ ?>
+				<span class="post-expander-header"><?php echo $director; ?>: </span>
+				<?php echo $row['Director']; ?>
+				<br><br>
+			<?php } ?>
+			<?php if($row['Producer'] != ""){ ?>
+				<span class="post-expander-header"><?php echo $producer; ?>: </span>
+				<?php echo $row['Producer']; ?>
+				<br><br>
+			<?php } ?>
+			<?php if($row['Screenplay'] != ""){ ?>
+				<span class="post-expander-header">Screenplay: </span>
+				<?php echo $row['Screenplay']; ?>
+				<br><br>
+			<?php } ?>
+			<?php if($row['DoP'] != ""){ ?>
+				<span class="post-expander-header">DoP: </span>
+				<?php echo $row['DoP']; ?>
+				<br><br>
+			<?php } ?>
+			<?php if($row['Cast'] != ""){ ?>
+				<span class="post-expander-header">Cast: </span>
+				<?php echo $row['Cast']; ?>
+				<br><br>
+			<?php } ?>
+			<?php if($row['Year'] != ""){ ?>
+				<span class="post-expander-header">Year :</span>
+				<?php echo $row['Year']; ?>
+			<?php } ?>
+			</div>
+			<div class="post-film-trivia" id="post-film-trivia<?php echo $row['PostID']; ?>">
+				<?php echo $row['Trivia']; ?>
+			</div>
+		</div>
+		<div class="post-footer">
+			<table class="post-publication-date">
+				<tr><td><?php echo $row['PublicationDate'] . " - " . substr($row['PublicationTime'], 0, -3) . " CET"; ?></td><tr>
+			</table>
+		</div>
+	</div>
+</div>
