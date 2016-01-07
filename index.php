@@ -1,180 +1,40 @@
-<!DOCTYPE html>
-<html>
+<?php include "functions/functions.php"; ?>
+	<!DOCTYPE html>
+	<html>
+
 	<head>
-		<meta charset="utf-8"/>
-		<script src="//use.typekit.net/lqk4yck.js"></script>
-		<script>try{Typekit.load();}catch(e){}</script>
-		<script src="//f.vimeocdn.com/js/froogaloop2.min.js"></script>
-		<script src="scripts/jquery.js"></script>
-		<link rel="stylesheet" type="text/css" href="styles/style.css"/>
-		<link rel="stylesheet" type="text/css" href="styles/mobile-style.css"/>
-		<?php
-
-		$postId = htmlspecialchars($_GET["postid"]);
-		$date = date("Y-m-d", time());
-		$servername = "localhost";
-		$username = "ktulu";
-		$password = "rgclw3jtrpgh3drc";
-		$dbname = "Tinygiantz";
-		$connection = mysqli_connect($servername, $username, $password, $dbname);
-
-		if($postId != ""){
-
-			$sqlQueryFacebookMetaData = "SELECT * FROM Films WHERE PostID='$postId'";
-			$sqlResultFacebookMetaData = mysqli_query($connection, $sqlQueryFacebookMetaData);
-			$rowFacebookMetaData = mysqli_fetch_assoc($sqlResultFacebookMetaData);
-			$FacebookMetaData_PostTitle = $rowFacebookMetaData["Title"];
-			$FacebookMetaData_PostUrl = "http://port-80.62ce3nujfcnv1jorg5mbtrdbjvdholxr7rhh0qdiuqujif6r.box.codeanywhere.com/?postid=". $rowFacebookMetaData["PostID"];
-			$FacebookMetaData_PostTitle = $rowFacebookMetaData["Title"];
-			$FacebookMetaData_PostType = "article";
-			$FacebookMetaData_PostDescription = $rowFacebookMetaData["Description"];
-			$FacebookMetaData_PostImage = $rowFacebookMetaData["Picture"];
-			$PageTitle_Post = $rowFacebookMetaData["Title"];
-
-			echo "<title>Tinygiantz - $PageTitle_Post</title>";
-			echo "<meta property=\"og:site_name\" content=\"Tinygiantz\"/>";
-			echo "<meta property=\"og:title\" content=\"$FacebookMetaData_PostTitle\"/>";
-			echo "<meta property=\"og:url\" content=\"$FacebookMetaData_PostUrl\"/>";
-			echo "<meta property=\"og:type\" content=\"article\"/>";
-			echo "<meta property=\"og:description\" content=\"$FacebookMetaData_PostDescription\"/>";
-			echo "<meta property=\"og:image\" content=\"$FacebookMetaData_PostImage\"/>";
-
-		}
-		else {
-
-			echo "<title>Tinygiantz (development)</title>";
-			echo "<meta property=\"og:site_name\" content=\"Tinygiantz\"/>";
-			echo "<meta property=\"og:title\" content=\"Tinygiantz\"/>";
-			echo "<meta property=\"og:url\" content=\"http://www.tinygiantz.com/\"/>";
-			echo "<meta property=\"og:type\" content=\"website\"/>";
-			echo "<meta property=\"og:image\" content=\"http://static1.squarespace.com/static/52f77f57e4b0e482df7ba5c1/t/54b4094de4b0ac5b7ad2283d/1425017410098/?format=1000w\"/>";
-
-		}
-
-		?>
+		<?php include "includes/head-meta.php";?>
 	</head>
+
 	<body>
-		<header id="header">
-			<div id="title">
-				<a id="title-link" href="/">Tinygiantz</a>
-			</div>
-			<div id="header-navigation">
-				<ul>
-					<li class="header-navigation-category" id="header-navigation-action">
-						<a href="/?category=action">ACTION</a>
-						<div class="header-time-selection">
-							<ul>
-								<li><a href="/?category=action&length=0-5">0-5 MIN</a></li>
-								<li><a href="/?category=action&length=5-15">5-15 MIN</a></li>
-								<li><a href="/?category=action&length=15-30">15-30 MIN</a></li>
-								<li><a href="/?category=action&length=30-60">30-60 MIN</a></li>
-							</ul>
-						</div>
-					</li>
-					<li class="header-navigation-category" id="header-navigation-animation">
-						<a href="/?category=animation">ANIMATION</a>
-						<div class="header-time-selection">
-							<ul>
-								<li><a href="/?category=animation&length=0-5">0-5 MIN</a></li>
-								<li><a href="/?category=animation&length=5-15">5-15 MIN</a></li>
-								<li><a href="/?category=animation&length=15-30">15-30 MIN</a></li>
-								<li><a href="/?category=animation&length=30-60">30-60 MIN</a></li>
-							</ul>
-						</div>
-					</li>
-					<li class="header-navigation-category" id="header-navigation-comedy">
-						<a href="/?category=comedy">COMEDY</a>
-						<div class="header-time-selection">
-							<ul>
-								<li><a href="/?category=comedy&length=0-5">0-5 MIN</a></li>
-								<li><a href="/?category=comedy&length=5-15">5-15 MIN</a></li>
-								<li><a href="/?category=comedy&length=15-30">15-30 MIN</a></li>
-								<li><a href="/?category=comedy&length=30-60">30-60 MIN</a></li>
-							</ul>
-						</div>
-					</li>
-					<li class="header-navigation-category" id="header-navigation-documentary">
-						<a href="/?category=documentary">DOCUMENTARY</a>
-						<div class="header-time-selection">
-							<ul>
-								<li><a href="/?category=documentary&length=0-5">0-5 MIN</a></li>
-								<li><a href="/?category=documentary&length=5-15">5-15 MIN</a></li>
-								<li><a href="/?category=documentary&length=15-30">15-30 MIN</a></li>
-								<li><a href="/?category=documentary&length=30-60">30-60 MIN</a></li>
-							</ul>
-						</div>
-					</li>
-					<li class="header-navigation-category" id="header-navigation-drama">
-						<a href="/?category=drama">DRAMA</a>
-						<div class="header-time-selection">
-							<ul>
-								<li><a href="/?category=drama&length=0-5">0-5 MIN</a></li>
-								<li><a href="/?category=drama&length=5-15">5-15 MIN</a></li>
-								<li><a href="/?category=drama&length=15-30">15-30 MIN</a></li>
-								<li><a href="/?category=drama&length=30-60">30-60 MIN</a></li>
-							</ul>
-						</div>
-					</li>
-					<li class="header-navigation-category" id="header-navigation-suspense">
-						<a href="/?category=suspense">SUSPENSE</a>
-						<div class="header-time-selection">
-							<ul>
-								<li><a href="/?category=suspense&length=0-5">0-5 MIN</a></li>
-								<li><a href="/?category=suspense&length=5-15">5-15 MIN</a></li>
-								<li><a href="/?category=suspense&length=15-30">15-30 MIN</a></li>
-								<li><a href="/?category=suspense&length=30-60">30-60 MIN</a></li>
-							</ul>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</header>
-	<?php
-
-	$pageNumber = htmlspecialchars($_GET["page"]) + 0;
-	$pageNumberCurrent = 0;
-	if(is_int($pageNumber)){
-		$pageNumberCurrent = $pageNumber;
-		if($pageNumber == 1 || $pageNumber == 0){
-			$pageNumber = 0;
-			$pageNumberCurrent = 1;
-		}
-		else {
-			$pageNumber = ($pageNumber * 10) - 10;
-		}
-	}
-	else {
-		$pageNumber = 0;
-	}
-	$pageNumberNextMulti = $pageNumberCurrent + 1;
-	$pageNumberPreviousMulti = $pageNumberCurrent - 1;
-	if($pageNumberCurrent == 1){
-		$pageNumberPreviousMulti = 1;
-	}
-
-	$category = htmlspecialchars($_GET["category"]);
-	$length = htmlspecialchars($_GET["length"]);
+		<?php include "includes/header-navigation.php";?>
+			<?php
 
 	if (!$connection) {
 		die("Connection failed: " . mysqli_connect_error());
 	}
 
-	if($postId != ""){
-		$sqlQuerySinglePage = "SELECT * FROM Films WHERE PostID='$postId'";
+	
+	if($_GET["search"] != ""){
+		include "includes/search.php";
+	}
+	else{
+		if($post_id != ""){
+		$sqlQuerySinglePage = "SELECT * FROM Films WHERE PostID='$post_id' AND PostStatus = 'Published'";
 		$sqlResultSinglePage = mysqli_query($connection, $sqlQuerySinglePage);
 
-		$sqlQuerySinglePageIndex = "SELECT t.PageIndex FROM (SELECT *, (@rownum := @rownum + 1) PageIndex FROM Films, (SELECT @rownum := 0) t WHERE PostStatus = 'Published' AND PublicationDate<='$date' ORDER BY PublicationDate DESC, PublicationTime DESC, PostID DESC) t WHERE PostID = '$postId'";
+		$sqlQuerySinglePageIndex = "SELECT t.PageIndex FROM (SELECT *, (@rownum := @rownum + 1) PageIndex FROM Films, (SELECT @rownum := 0) t WHERE PostStatus = 'Published' AND PublicationDate<='$date' ORDER BY PublicationDate DESC, PublicationTime DESC, PostID DESC) t WHERE PostID = '$post_id'";
 		$sqlResultSinglePageIndex = mysqli_query($connection, $sqlQuerySinglePageIndex);
 		$rowPageIndex = mysqli_fetch_assoc($sqlResultSinglePageIndex);
 		$pageIndexCurrent = $rowPageIndex["PageIndex"];
 
-		$sqlQuerySinglePageDate = "SELECT * FROM Films WHERE PostID='$postId'";
+		$sqlQuerySinglePageDate = "SELECT * FROM Films WHERE PostID='$post_id'";
 		$sqlResultSinglePageDate = mysqli_query($connection, $sqlQuerySinglePageDate);
 		$rowDateCurrent = mysqli_fetch_assoc($sqlResultSinglePageDate);
 		$pageDateCurrent = $rowDateCurrent["PublicationDate"];
 		$pageTimeCurrent = $rowDateCurrent["PublicationTime"];
 
-		$sqlQuerySinglePagePrevious = "SELECT * FROM Films WHERE PostStatus = 'Published' AND PublicationDate<='$date' AND PublicationDate='$pageDateCurrent' AND PublicationTime='$pageTimeCurrent' AND PostID>'$postId' ORDER BY PublicationDate DESC, PublicationTime DESC, PostID ASC LIMIT 0,1";
+		$sqlQuerySinglePagePrevious = "SELECT * FROM Films WHERE PostStatus = 'Published' AND PublicationDate<='$date' AND PublicationDate='$pageDateCurrent' AND PublicationTime='$pageTimeCurrent' AND PostID>'$post_id' ORDER BY PublicationDate DESC, PublicationTime DESC, PostID ASC LIMIT 0,1";
 		$sqlResultSinglePagePrevious = mysqli_query($connection, $sqlQuerySinglePagePrevious);
 		$rowPrevious = mysqli_fetch_assoc($sqlResultSinglePagePrevious);
 		$pageNumberPreviousSingle = $rowPrevious["PostID"];
@@ -198,7 +58,7 @@
 			$pageNumberPreviousTitle = $rowPrevious2["Title"];
 		}
 
-		$sqlQuerySinglePageNext = "SELECT * FROM Films WHERE PostStatus = 'Published' AND PublicationDate<='$date' AND PublicationDate='$pageDateCurrent' AND PublicationTime='$pageTimeCurrent' AND PostID<'$postId' ORDER BY PublicationDate DESC, PublicationTime DESC, PostID DESC LIMIT 0,1";
+		$sqlQuerySinglePageNext = "SELECT * FROM Films WHERE PostStatus = 'Published' AND PublicationDate<='$date' AND PublicationDate='$pageDateCurrent' AND PublicationTime='$pageTimeCurrent' AND PostID<'$post_id' ORDER BY PublicationDate DESC, PublicationTime DESC, PostID DESC LIMIT 0,1";
 		$sqlResultSinglePageNext = mysqli_query($connection, $sqlQuerySinglePageNext);
 		$rowNext = mysqli_fetch_assoc($sqlResultSinglePageNext);
 		$pageNumberNextSingle = $rowNext["PostID"];
@@ -242,7 +102,7 @@
 			$sqlQueryMultiPage = "SELECT * FROM Films WHERE PostStatus = 'Published' AND Category = '$category' AND VideoLength = '$length' AND PublicationDate<='$date' ORDER BY PublicationDate DESC, PublicationTime DESC, PostID DESC LIMIT $pageNumber,10";
 			$sqlResultMultiPage = mysqli_query($connection, $sqlQueryMultiPage);
 
-			$sqlQueryTotalPages = "SELECT * FROM Films WHERE PostStatus = 'Published' AND PublicationDate<='$date' AND Category = '$category' AND Length = '$length'";
+			$sqlQueryTotalPages = "SELECT * FROM Films WHERE PostStatus = 'Published' AND PublicationDate <='$date' AND Category = '$category' AND VideoLength = '$length'";
 			$sqlResultTotalPages = mysqli_query($connection, $sqlQueryTotalPages);
 			$totalPagesMulti = ceil(mysqli_num_rows($sqlResultTotalPages) / 10);
 			$totalPagesSingle = mysqli_num_rows($sqlResultTotalPages);
@@ -298,15 +158,52 @@
 	}
 
 	echo "<div class=\"page-sidebar-container\">";
-	echo "<input type=\"search\" class=\"search-box-input\" value=\"\" placeholder=\"Search\" id=\"search-box-input\"/>";
-	echo "<div class=\"page-sidebar-divider-title\">FILM SELECTION</div>";
+	echo "<form action=\"/\" method=\"get\">";
+	echo "<input type=\"search\" class=\"search-box-input\" name=\"search\" value=\"\" placeholder=\"Search\" id=\"search-box-input\"/ autocomplete=\"off\">";
+	echo "</form>";
+
+	if($post_id == ""){
+
+		echo "<div class=\"page-sidebar-divider-title\">FILM OF THE DAY</div>";
+
+		if (mysqli_num_rows($sqlResultFilmOfTheDay) > 0) {
+			while($rowFilmOfTheDay = mysqli_fetch_assoc($sqlResultFilmOfTheDay)) {
+				echo "<div onmouseleave=\"featuredFilmMinimize(" . $rowFilmOfTheDay["PostID"] . ");\" onmouseenter=\"featuredFilmExpand(" . $rowFilmOfTheDay["PostID"] . ");\" class=\"filmoftheday-container\" id=\"featured-film-container" . $rowFilmOfTheDay["PostID"] . "\">";
+				echo "<a href=\"/?postid=" . $rowFilmOfTheDay["PostID"] . "\" class=\"featured-film-picture-container\" style=\"background: url(" . $rowFilmOfTheDay["Picture"] . ");background-position: center;background-size: cover;background-repeat: no-repeat;\">";
+				echo "<div class=\"featured-film-title\">";
+				echo "<p>". $rowFilmOfTheDay["Title"] . "</p>";
+				echo "</div>";
+				echo "</a>";
+				echo "<div class=\"featured-film-description\" id=\"featured-film-description" . $rowFilmOfTheDay["PostID"] . "\">";
+				echo "" . $rowFilmOfTheDay["Description"] . "";
+				echo "</div>";		
+				echo "</div>";
+			}
+		}
+
+		echo "<div class=\"page-sidebar-divider-title\">EDITORS' PICKS</div>";
+
+		if (mysqli_num_rows($sqlResultFeaturedFilms) > 0) {
+			while($rowFeaturedFilms = mysqli_fetch_assoc($sqlResultFeaturedFilms)) {
+				echo "<div onmouseleave=\"featuredFilmMinimize(" . "2" . $rowFeaturedFilms["PostID"] . ");\" onmouseenter=\"featuredFilmExpand(" . "2" . $rowFeaturedFilms["PostID"] . ");\" class=\"featured-film-container\" id=\"featured-film-container" . "2" . $rowFeaturedFilms["PostID"] . "\">";
+				echo "<a href=\"/?postid=" . $rowFeaturedFilms["PostID"] . "\" class=\"featured-film-picture-container\" style=\"background: url(" . $rowFeaturedFilms["Picture"] . ");background-position: center;background-size: cover;background-repeat: no-repeat;\">";
+				echo "<div class=\"featured-film-title\">";
+				echo "<p>" . $rowFeaturedFilms["Title"] . "</p>";
+				echo "</div>";
+				echo "</a>";
+				echo "<div class=\"featured-film-description\" id=\"featured-film-description" . "2" . $rowFeaturedFilms["PostID"] . "\">";
+				echo "" . $rowFeaturedFilms["Description"] . "";
+				echo "</div>";		
+				echo "</div>";
+			}
+		}
+		
 	echo "<div class=\"page-sidebar-link-container\">";
 	echo "<ul>";
 	echo "<li>CREDITED NAMES</li>";
 	echo "<li>RELEASE YEARS</li>";
 	echo "</ul>";
 	echo "</div>";
-	echo "<div class=\"page-sidebar-divider-title\">INFORMATION</div>";
 	echo "<div class=\"page-sidebar-link-container\">";
 	echo "<ul>";
 	echo "<li>ABOUT US</li>";
@@ -314,13 +211,11 @@
 	echo "<li>SUBMIT A FILM</li>";
 	echo "</ul>";
 	echo "</div>";
-	echo "<div class=\"page-sidebar-divider-title\">LINKS</div>";
 	echo "<div class=\"page-sidebar-link-container\">";
 	echo "<ul>";
 	echo "<li><a href=\"http://www.tinygiantz.com/?format=rss\" class=\"rss-link\">TINYGIANTZ RSS</a></li>";
 	echo "</ul>";
 	echo "</div>";
-	echo "<div class=\"page-sidebar-divider-title\">SHARE</div>";
 	echo "<div id=\"likesharebuttonslist\">";
 	echo "<div class=\"likesharebutton\" id=\"fblikeshare\">";
 	echo "<iframe id=\"fbframe\" src=\"//www.facebook.com/plugins/like.php?locale=en_US&amp;href=http%3A%2F%2Fwww.tinygiantz.com&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=true&amp;height=\" 21\"scrolling=\"no\" frameborder=\"0\" style=\"border:none; overflow:hidden; height:21px;\" allowtransparency=\"true\">";
@@ -340,47 +235,11 @@
 	echo "</script>";
 	echo "</div>";
 
-	if($postId == ""){
-
-		echo "<div class=\"page-sidebar-divider-title\">FILM OF THE DAY</div>";
-
-		if (mysqli_num_rows($sqlResultFilmOfTheDay) > 0) {
-			while($rowFilmOfTheDay = mysqli_fetch_assoc($sqlResultFilmOfTheDay)) {
-				echo "<div onmouseleave=\"mouseleaveFeaturedFilm(" . $rowFilmOfTheDay["PostID"] . ");\" onmouseenter=\"mouseenterFeaturedFilm(" . $rowFilmOfTheDay["PostID"] . ");\" class=\"filmoftheday-container\" id=\"featured-film-container" . $rowFilmOfTheDay["PostID"] . "\">";
-				echo "<a href=\"/?postid=" . $rowFilmOfTheDay["PostID"] . "\" class=\"featured-film-picture-container\" style=\"background: url(" . $rowFilmOfTheDay["Picture"] . ");background-position: center;background-size: cover;background-repeat: no-repeat;\">";
-				echo "<div class=\"featured-film-title\">";
-				echo "<p>". $rowFilmOfTheDay["Title"] . "</p>";
-				echo "</div>";
-				echo "</a>";
-				echo "<div class=\"featured-film-description\" id=\"featured-film-description" . $rowFilmOfTheDay["PostID"] . "\">";
-				echo "" . $rowFilmOfTheDay["Description"] . "";
-				echo "</div>";		
-				echo "</div>";
-			}
-		}
-
-		echo "<div class=\"page-sidebar-divider-title\">EDITORS' PICKS</div>";
-
-		if (mysqli_num_rows($sqlResultFeaturedFilms) > 0) {
-			while($rowFeaturedFilms = mysqli_fetch_assoc($sqlResultFeaturedFilms)) {
-				echo "<div onmouseleave=\"mouseleaveFeaturedFilm(" . "2" . $rowFeaturedFilms["PostID"] . ");\" onmouseenter=\"mouseenterFeaturedFilm(" . "2" . $rowFeaturedFilms["PostID"] . ");\" class=\"featured-film-container\" id=\"featured-film-container" . "2" . $rowFeaturedFilms["PostID"] . "\">";
-				echo "<a href=\"/?postid=" . $rowFeaturedFilms["PostID"] . "\" class=\"featured-film-picture-container\" style=\"background: url(" . $rowFeaturedFilms["Picture"] . ");background-position: center;background-size: cover;background-repeat: no-repeat;\">";
-				echo "<div class=\"featured-film-title\">";
-				echo "<p>" . $rowFeaturedFilms["Title"] . "</p>";
-				echo "</div>";
-				echo "</a>";
-				echo "<div class=\"featured-film-description\" id=\"featured-film-description" . "2" . $rowFeaturedFilms["PostID"] . "\">";
-				echo "" . $rowFeaturedFilms["Description"] . "";
-				echo "</div>";		
-				echo "</div>";
-			}
-		}
-
 		echo "<div class=\"page-sidebar-divider-title\">NEW IN ACTION</div>";
 
 		if (mysqli_num_rows($sqlResultNewFilmsAction) > 0) {
 			while($rowNewFilmsAction = mysqli_fetch_assoc($sqlResultNewFilmsAction)) {
-				echo "<div onmouseleave=\"mouseleaveFeaturedFilm(" . "3" . $rowNewFilmsAction["PostID"] . ");\" onmouseenter=\"mouseenterFeaturedFilm(" . "3" . $rowNewFilmsAction["PostID"] . ");\" class=\"featured-film-container\" id=\"featured-film-container" . "3" . $rowNewFilmsAction["PostID"] . "\">";
+				echo "<div onmouseleave=\"featuredFilmMinimize(" . "3" . $rowNewFilmsAction["PostID"] . ");\" onmouseenter=\"featuredFilmExpand(" . "3" . $rowNewFilmsAction["PostID"] . ");\" class=\"featured-film-container\" id=\"featured-film-container" . "3" . $rowNewFilmsAction["PostID"] . "\">";
 				echo "<a href=\"/?postid=" . $rowNewFilmsAction["PostID"] . "\" class=\"featured-film-picture-container\" style=\"background: url(" . $rowNewFilmsAction["Picture"] . ");background-position: center;background-size: cover;background-repeat: no-repeat;\">";
 				echo "<div class=\"featured-film-title\">";
 				echo "<p>" . $rowNewFilmsAction["Title"] . "</p>";
@@ -397,7 +256,7 @@
 
 		if (mysqli_num_rows($sqlResultNewFilmsAnimation) > 0) {
 			while($rowNewFilmsAnimation = mysqli_fetch_assoc($sqlResultNewFilmsAnimation)) {
-				echo "<div onmouseleave=\"mouseleaveFeaturedFilm(" . "4" . $rowNewFilmsAnimation["PostID"] . ");\" onmouseenter=\"mouseenterFeaturedFilm(" . "4" . $rowNewFilmsAnimation["PostID"] . ");\" class=\"featured-film-container\" id=\"featured-film-container" . "4" . $rowNewFilmsAnimation["PostID"] . "\">";
+				echo "<div onmouseleave=\"featuredFilmMinimize(" . "4" . $rowNewFilmsAnimation["PostID"] . ");\" onmouseenter=\"featuredFilmExpand(" . "4" . $rowNewFilmsAnimation["PostID"] . ");\" class=\"featured-film-container\" id=\"featured-film-container" . "4" . $rowNewFilmsAnimation["PostID"] . "\">";
 				echo "<a href=\"/?postid=" . $rowNewFilmsAnimation["PostID"] . "\" class=\"featured-film-picture-container\" style=\"background: url(" . $rowNewFilmsAnimation["Picture"] . ");background-position: center;background-size: cover;background-repeat: no-repeat;\">";
 				echo "<div class=\"featured-film-title\">";
 				echo "<p>" . $rowNewFilmsAnimation["Title"] . "</p>";
@@ -414,7 +273,7 @@
 
 		if (mysqli_num_rows($sqlResultNewFilmsComedy) > 0) {
 			while($rowNewFilmsComedy = mysqli_fetch_assoc($sqlResultNewFilmsComedy)) {
-				echo "<div onmouseleave=\"mouseleaveFeaturedFilm(" . "5" . $rowNewFilmsComedy["PostID"] . ");\" onmouseenter=\"mouseenterFeaturedFilm(" . "5" . $rowNewFilmsComedy["PostID"] . ");\" class=\"featured-film-container\" id=\"featured-film-container" . "5" . $rowNewFilmsComedy["PostID"] . "\">";
+				echo "<div onmouseleave=\"featuredFilmMinimize(" . "5" . $rowNewFilmsComedy["PostID"] . ");\" onmouseenter=\"featuredFilmExpand(" . "5" . $rowNewFilmsComedy["PostID"] . ");\" class=\"featured-film-container\" id=\"featured-film-container" . "5" . $rowNewFilmsComedy["PostID"] . "\">";
 				echo "<a href=\"/?postid=" . $rowNewFilmsComedy["PostID"] . "\" class=\"featured-film-picture-container\" style=\"background: url(" . $rowNewFilmsComedy["Picture"] . ");background-position: center;background-size: cover;background-repeat: no-repeat;\">";
 				echo "<div class=\"featured-film-title\">";
 				echo "<p>" . $rowNewFilmsComedy["Title"] . "</p>";
@@ -431,7 +290,7 @@
 
 		if (mysqli_num_rows($sqlResultNewFilmsDocumentary) > 0) {
 			while($rowNewFilmsDocumentary = mysqli_fetch_assoc($sqlResultNewFilmsDocumentary)) {
-				echo "<div onmouseleave=\"mouseleaveFeaturedFilm(" . "6" . $rowNewFilmsDocumentary["PostID"] . ");\" onmouseenter=\"mouseenterFeaturedFilm(" . "6" . $rowNewFilmsDocumentary["PostID"] . ");\" class=\"featured-film-container\" id=\"featured-film-container" . "6" . $rowNewFilmsDocumentary["PostID"] . "\">";
+				echo "<div onmouseleave=\"featuredFilmMinimize(" . "6" . $rowNewFilmsDocumentary["PostID"] . ");\" onmouseenter=\"featuredFilmExpand(" . "6" . $rowNewFilmsDocumentary["PostID"] . ");\" class=\"featured-film-container\" id=\"featured-film-container" . "6" . $rowNewFilmsDocumentary["PostID"] . "\">";
 				echo "<a href=\"/?postid=" . $rowNewFilmsDocumentary["PostID"] . "\" class=\"featured-film-picture-container\" style=\"background: url(" . $rowNewFilmsDocumentary["Picture"] . ");background-position: center;background-size: cover;background-repeat: no-repeat;\">";
 				echo "<div class=\"featured-film-title\">";
 				echo "<p>" . $rowNewFilmsDocumentary["Title"] . "</p>";
@@ -448,7 +307,7 @@
 
 		if (mysqli_num_rows($sqlResultNewFilmsDrama) > 0) {
 			while($rowNewFilmsDrama = mysqli_fetch_assoc($sqlResultNewFilmsDrama)) {
-				echo "<div onmouseleave=\"mouseleaveFeaturedFilm(" . "7" . $rowNewFilmsDrama["PostID"] . ");\" onmouseenter=\"mouseenterFeaturedFilm(" . "7" . $rowNewFilmsDrama["PostID"] . ");\" class=\"featured-film-container\" id=\"featured-film-container" . "7" . $rowNewFilmsDrama["PostID"] . "\">";
+				echo "<div onmouseleave=\"featuredFilmMinimize(" . "7" . $rowNewFilmsDrama["PostID"] . ");\" onmouseenter=\"featuredFilmExpand(" . "7" . $rowNewFilmsDrama["PostID"] . ");\" class=\"featured-film-container\" id=\"featured-film-container" . "7" . $rowNewFilmsDrama["PostID"] . "\">";
 				echo "<a href=\"/?postid=" . $rowNewFilmsDrama["PostID"] . "\" class=\"featured-film-picture-container\" style=\"background: url(" . $rowNewFilmsDrama["Picture"] . ");background-position: center;background-size: cover;background-repeat: no-repeat;\">";
 				echo "<div class=\"featured-film-title\">";
 				echo "<p>" . $rowNewFilmsDrama["Title"] . "</p>";
@@ -465,7 +324,7 @@
 
 		if (mysqli_num_rows($sqlResultNewFilmsSuspense) > 0) {
 			while($rowNewFilmsSuspense = mysqli_fetch_assoc($sqlResultNewFilmsSuspense)) {
-				echo "<div onmouseleave=\"mouseleaveFeaturedFilm(" . "8" . $rowNewFilmsSuspense["PostID"] . ");\" onmouseenter=\"mouseenterFeaturedFilm(" . "8" . $rowNewFilmsSuspense["PostID"] . ");\" class=\"featured-film-container\" id=\"featured-film-container" . "8" . $rowNewFilmsSuspense["PostID"] . "\">";
+				echo "<div onmouseleave=\"featuredFilmMinimize(" . "8" . $rowNewFilmsSuspense["PostID"] . ");\" onmouseenter=\"featuredFilmExpand(" . "8" . $rowNewFilmsSuspense["PostID"] . ");\" class=\"featured-film-container\" id=\"featured-film-container" . "8" . $rowNewFilmsSuspense["PostID"] . "\">";
 				echo "<a href=\"/?postid=" . $rowNewFilmsSuspense["PostID"] . "\" class=\"featured-film-picture-container\" style=\"background: url(" . $rowNewFilmsSuspense["Picture"] . ");background-position: center;background-size: cover;background-repeat: no-repeat;\">";
 				echo "<div class=\"featured-film-title\">";
 				echo "<p>" . $rowNewFilmsSuspense["Title"] . "</p>";
@@ -491,35 +350,35 @@
 	echo "</div>";
 	echo "</div>";
 
-	if($postId != ""){
+	if($post_id != ""){
 		if (mysqli_num_rows($sqlResultSinglePage) > 0) {
 
 			if($pageNumberPreviousTitle != ""){
-				$footerNavigationPrevious = "<a class=\"footer-navigation-link\" href=\"/?postid=$pageNumberPreviousSingle\">$pageNumberPreviousTitle</a>";	
+				$footer_navigation_previous = "<a class=\"footer-navigation-link\" href=\"/?postid=$pageNumberPreviousSingle\">$pageNumberPreviousTitle</a>";	
 			}
 			if($pageNumberNextTitle != ""){
-				$footerNavigationNext = "<a class=\"footer-navigation-link\" href=\"/?postid=$pageNumberNextSingle\">$pageNumberNextTitle</a>";	
+				$footer_navigation_next = "<a class=\"footer-navigation-link\" href=\"/?postid=$pageNumberNextSingle\">$pageNumberNextTitle</a>";	
 			}
 
 			echo "<div class=\"page-content-container\">";
 
-			while($row = mysqli_fetch_assoc($sqlResultSinglePage)) {
+			while($post = mysqli_fetch_assoc($sqlResultSinglePage)) {
 
-				if(strpos($row["Director"], ",") > -1){
+				if(strpos($post["Director"], ",") > -1){
 					$director = "Directors";
 				}
 				else {
 					$director = "Director";
 				}
 
-				if(strpos($row["Producer"], ",") > -1){
+				if(strpos($post["Producer"], ",") > -1){
 					$producer = "Producers";
 				}
 				else {
 					$producer = "Producer";
 				}
 
-				$row["PublicationDate"] = date('F j, Y', strtotime($row["PublicationDate"]));
+				$post["PublicationDate"] = date('F j, Y', strtotime($post["PublicationDate"]));
 
 				include "includes/film-post.php";
 
@@ -529,13 +388,13 @@
 			echo "<table class=\"footer-navigation-table\">";
 			echo "<tr>";
 			echo "<td class=\"footer-navigation-previous\">";
-			echo "" . $footerNavigationPrevious . "";
+			echo "" . $footer_navigation_previous . "";
 			echo "</td>";
 			echo "<td class=\"footer-navigation-current\">";
 			echo "\t\t\t\t\t\tPage&nbsp;$pageIndexCurrent&nbsp;of&nbsp;$totalPagesSingle";
 			echo "</td>";
 			echo "<td class=\"footer-navigation-next\">";
-			echo "" . $footerNavigationNext . "";
+			echo "" . $footer_navigation_next . "";
 			echo "</td>";
 			echo "<tr>";
 			echo "</table>";
@@ -562,45 +421,52 @@
 			echo "</div>";	
 		}
 
-		while($row = mysqli_fetch_assoc($sqlResultMultiPage)) {
+		while($post = mysqli_fetch_assoc($sqlResultMultiPage)) {
 
-			if(strpos($row["Director"], ",") > -1){
+			if(strpos($post["Director"], ",") > -1){
 				$director = "Directors";
 			}
 			else {
 				$director = "Director";
 			}
 
-			if(strpos($row["Producer"], ",") > -1){
+			if(strpos($post["Producer"], ",") > -1){
 				$producer = "Producers";
 			}
 			else {
 				$producer = "Producer";
 			}
 
-			$row["PublicationDate"] = date('F j, Y', strtotime($row["PublicationDate"]));
+			$post["PublicationDate"] = date('F j, Y', strtotime($post["PublicationDate"]));
 			include "includes/film-post.php";
 
 		}
 
+		if($category != ""){
+				$category_href = "category=" . $category . "&";
+		}
+			if($length != ""){
+				$length_href = "length=" . $length . "&";
+		}
+			
 		if($pageNumberCurrent != "1"){
-			$footerNavigationPrevious = "<a class=\"footer-navigation-link\" href=\"/?page=$pageNumberPreviousMulti\">Previous page</a>";
+			$footer_navigation_previous = "<a class=\"footer-navigation-link\" href=\"/?" . $category_href . $length_href . "page=" . $pageNumberPreviousMulti . "\">Previous page</a>";
 		}
 		if($pageNumberCurrent != $totalPagesMulti){
-			$footerNavigationNext = "<a class=\"footer-navigation-link\" href=\"/?page=$pageNumberNextMulti\">Next page</a>";
+			$footer_navigation_next = "<a class=\"footer-navigation-link\" href=\"/?" . $category_href . $length_href . "page=" . $pageNumberNextMulti . "\">Next page</a>";
 		}
 
 		echo "<div class=\"footer-navigation\">";
 		echo "<table class=\"footer-navigation-table\">";
 		echo "<tr>";
 		echo "<td class=\"footer-navigation-previous\">";
-		echo "" . $footerNavigationPrevious . "";
+		echo "" . $footer_navigation_previous . "";
 		echo "</td>";
 		echo "<td class=\"footer-navigation-current\">";
 		echo "\t\t\t\t\t\tPage&nbsp;$pageNumberCurrent&nbsp;of&nbsp;$totalPagesMulti";
 		echo "</td>";
 		echo "<td class=\"footer-navigation-next\">";
-		echo "" . $footerNavigationNext . "";
+		echo "" . $footer_navigation_next . "";
 		echo "</td>";
 		echo "<tr>";
 		echo "</table>";
@@ -610,10 +476,12 @@
 	} else {
 		echo "0 results";
 	}	
+	}	
 	}
 
-	mysqli_close($conn);
+	mysqli_close($connection);
 	?>
-		<script src="scripts/scripts.js"></script>
+				<script src="scripts/scripts.js"></script>
 	</body>
-</html>
+
+	</html>
