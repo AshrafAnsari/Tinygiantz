@@ -1,0 +1,478 @@
+@import url("../styles/reset.css");
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #A4BF9D;
+  font-family: arial;
+  color: white;
+  text-shadow: 0 0 1px black;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  letter-spacing: 1px;
+}
+
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  height: 40px;
+  background-color: white;
+  color: black;
+  z-index: 99;
+  box-shadow: 0 0 10px gray;
+  border-bottom: 1px solid black;
+}
+
+#menu {
+  list-style: none;
+  margin-left: 11px;
+}
+
+#menu li {
+  position: relative;
+  display: inline-block;
+  padding: 11px;
+  padding-top: 12px;
+  text-shadow: none;
+  cursor: default;
+}
+
+#menu li:hover {
+  background-color: lightgray;
+}
+
+span {
+  color: red;
+}
+
+.input {
+  width: calc(100% - 55px);
+  border: 1px solid gray;
+  padding: 10px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  box-shadow: inset 0 0 5px black;
+  font-size: 16px;
+  transition: all .2s ease;
+  outline: none;
+  font-family: arial;
+  letter-spacing: 1px;
+  background-color: white;
+  color: black;
+}
+
+.input-text {
+  width: calc(100% - 50px);
+  height: 200px;
+  resize: none;
+  border: 1px solid gray;
+  padding: 10px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  box-shadow: inset 0 0 5px black;
+  font-size: 16px;
+  font-family: arial;
+  transition: all .2s ease;
+  outline: none;
+  letter-spacing: 1px;
+  background-color: white;
+  color: black;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  box-sizing: content-box;
+  border: 2px solid gray;
+  color: black;
+  background-color: lightgray;
+  border-radius: 5px;
+  box-sizing: border-box;
+  box-shadow: 0 0 4px gray;
+  font-size: 14px;
+  font-family: arial;
+  transition: all .1s ease;
+  outline: none;
+  line-height: 10px;
+  padding-top: 11px;
+}
+
+button:hover {
+  background-color: darkgray;
+  cursor: pointer;
+}
+
+#button-fetch {
+  margin-right: 5px;
+  width: calc(50% - 30px);
+  background-color: #8DFF8D;
+}
+
+#button-reset {
+  margin-left: 5px;
+  width: calc(50% - 30px);
+  background-color: #FF6850;
+}
+
+#app-container {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-top: 40px;
+}
+
+#trivia {
+  height: 200px;
+}
+
+.add-item,
+.remove-item {
+  width: 43px;
+  height: 43px;
+  font-size: 20px;
+  padding: 0;
+  margin-left: 10px;
+  position: absolute;
+  //padding-bottom: 5px;
+}
+
+.wide {
+  width: 100%;
+}
+
+hr {
+  border: 1px solid #778E70;
+  display: none;
+}
+
+h1 {
+  margin-left: 15px;
+  font-size: 30px;
+  line-height: 50px;
+  color: white;
+  text-shadow: 0 0 1px black;
+  letter-spacing: 1px;
+}
+
+#main-title {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+h3 {
+  //text-shadow: 0 0 1px black;
+  font-size: 16px;
+  letter-spacing: 1px;
+  font-weight: 400;
+  line-height: 30px;
+  color: black;
+}
+
+#picture {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  position: relative;
+  cursor: move;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  box-shadow: inset 0 0 5px black;
+}
+
+#picture:focus,
+#picture:active,
+#picture:hover {
+  cursor: move;
+}
+
+.image-control {
+  width: 60px;
+  background-color: lightgray;
+}
+
+#image-control-slider-x,
+#image-control-slider-y,
+#image-control-slider-z {
+  //-webkit-appearance: slider-vertical;
+  width: 100%;
+  margin: 0;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 0;
+}
+
+#picture-container {
+  width: calc(100% - 40px);
+  //min-width: 300px;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  border-radius: 5px;
+  box-shadow: inset 0 0 5px black;
+  border: 1px solid gray;
+  background-color: white;
+  transition: all .2s ease;
+  overflow: hidden;
+  //float: left;
+  //position: relative;
+  color: black;
+}
+
+#image-controls {
+  position: relative;
+  right: 15px;
+  width: 100%;
+  //min-width: 300px;
+  //float: left;
+  padding: 20px;
+  text-align: center;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  //background-color: rgba(255,255,255,0.4);
+  //border: 1px solid gray;
+  //border-radius: 5px;
+  //box-shadow: 0 0 10px gray;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  /* Hides the slider so that custom slider can be made */
+  width: 100%;
+  /* Specific width is required for Firefox. */
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+input[type=range]:focus {
+  outline: none;
+  /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+  background: transparent;
+  /* Hides the slider so custom styles can be added */
+  border-color: transparent;
+  color: transparent;
+}
+
+
+/* Special styling for WebKit/Blink */
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 1px solid #000000;
+  height: 44px;
+  width: 20px;
+  border-radius: 5px;
+  background: lightgray;
+  cursor: pointer;
+  margin-top: -14px;
+  transition: background .1s ease;
+  /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+  box-shadow: 0 0 3px black;
+  /* Add cool effects to your sliders! */
+}
+
+
+/* All the same stuff for Firefox */
+
+input[type=range]::-webkit-slider-thumb:hover {
+  background: darkgray;
+}
+
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+
+/* All the same stuff for IE */
+
+input[type=range]::-ms-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 20px;
+  cursor: pointer;
+  //box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  box-shadow: 0 0 10px gray;
+  background: lightgray;
+  //border-radius: 5px;
+  border: 2px solid gray;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: lightgray;
+}
+
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: lightgray;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  border-width: 16px 0;
+  color: transparent;
+}
+
+input[type=range]::-ms-fill-lower {
+  background: #2a6495;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+
+input[type=range]:focus::-ms-fill-lower {
+  background: lightgray;
+}
+
+input[type=range]::-ms-fill-upper {
+  background: lightgray;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+
+input[type=range]:focus::-ms-fill-upper {
+  background: lightgray;
+}
+
+.slider-header {
+  width: 100%;
+}
+
+.slider-header-left {
+  text-align: left;
+  text-shadow: 0 0 1px black;
+  font-size: 20px;
+}
+
+.slider-header-right {
+  text-align: right;
+  text-shadow: 0 0 1px black;
+  font-size: 20px;
+}
+
+#picture-block {
+  width: calc(100% - 40px);
+}
+
+.picture-block-left,
+.picture-block-right {
+  padding: 0;
+  margin: 0;
+  vertical-align: top;
+}
+
+.picture-block-left {
+  width: 70%;
+}
+
+.picture-block-right {
+  width: 30%;
+}
+
+.image-control-block {
+  width: 100%;
+}
+
+.image-control-block td {
+  //border: 1px solid gray;
+}
+
+.image-control-left,
+.image-control-right {
+  width: 100px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.image-control-middle {
+  text-align: center;
+  width: auto;
+  vertical-align: middle;
+}
+
+.field-description {
+  //position: relative;
+  //top: 15px;
+  text-shadow: none;
+}
+
+::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.field-container {
+  padding: 10px;
+  padding-bottom: 2px;
+  margin: 10px;
+  margin-bottom: 30px;
+  border-radius: 5px;
+  background-color: #F3F3F3;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 0 0 10px gray;  
+  color: black;
+  text-shadow: none;
+  opacity: 0;
+  transition: opacity 1s ease;
+  -webkit-transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  -ms-transition: all .3s ease;
+  transition: all .3s ease;
+}
+
+.field-container p {
+  margin-bottom: 10px
+}
+
+#field-container-picture {
+  padding-bottom: 10px;
+}
